@@ -36,13 +36,16 @@
   
         function runApp() {
             var user = readCookie("username");
-            if(user != ""){
-                alert("Hello "+user);
-            }else{
+            if(!user){
                 user=prompt("Enter your name: ", "");
                 if(user!= "" && user!=null){
                     createCookie("username", user, 30);
                 }
+                
+            }else{
+                
+
+                alert("Hello "+user);
             }
         }
   
