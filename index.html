@@ -4,33 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Changelog</title>
-  <!-- Include the 'marked' library for converting Markdown to HTML -->
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
-  <div id="changelog">
-    <object data="https://raw.githubusercontent.com/<username>/<repository-name>/master/changelog.md" type="text/markdown" width="100%" height="400">
-</object>
-  </div>
-
-  <script>
-    // Function to fetch the 'changelog.md' file and render it on the website
-    function fetchChangelog() {
-      const changelogUrl = 'https://raw.githubusercontent.com/utkarshn03/utkarshn03.github.io/main/changelog.md';
-
-      fetch(changelogUrl)
-        .then(response => response.text())
-        .then(text => {
-          const changelogElement = document.getElementById('changelog');
-          changelogElement.innerHTML = marked(text); // Convert Markdown to HTML using the 'marked' library
-        })
-        .catch(error => {
-          console.error('Error fetching changelog:', error);
-        });
-    }
-
-    // Call the fetchChangelog function when the page loads
-    document.addEventListener('DOMContentLoaded', fetchChangelog);
-  </script>
+  <h1>Changelog</h1>
+  <object data="https://raw.githubusercontent.com/<username>/<repository-name>/master/changelog.md" type="text/markdown" width="100%" height="400">
+    <p>Sorry, your browser does not support viewing Markdown files. Please view it on GitHub using the link above.</p>
+  </object>
 </body>
 </html>
