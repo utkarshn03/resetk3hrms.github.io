@@ -1,0 +1,17 @@
+name: Sync Changelog to Website
+
+on:
+  push:
+    branches:
+      - master  # Replace 'master' with your main branch name
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check Out Repository
+      uses: actions/checkout@v2
+
+    - name: Copy Changelog to Website
+      run: cp changelog.md utkarshn03.github.io
