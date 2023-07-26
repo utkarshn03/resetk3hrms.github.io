@@ -1,55 +1,33 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>
-        Create and read cookies
-        using JavaScript
-    </title>
-      
-    <script type="text/javascript">
-        function createCookie(fieldname, fieldvalue, expiry) {
-            var date = new Date();
-            date.setTime(date.getTime()+ (expiry*24*60*60*1000));
-            var expires = "expires=" + date.toGMTString();
-            document.cookie = fieldname + "=" + fieldvalue
-                            + ";" + expires + ";path=/";
-        }
-  
-  
-        function readCookie(cname) {
-            var name = cname + "=";
-            var decoded_cookie = 
-                decodeURIComponent(document.cookie);
-            var carr = decoded_cookie.split(';');
-            for(var i=0; i<carr.length;i++){
-                var c = carr[i];
-                while(c.charAt(0)==' '){
-                    c=c.substring(1);
-                }
-                if(c.indexOf(name) == 0) {
-                    return c.substring(name.length, c.length);
-                }
-            }
-            return "";
-        }
-  
-  
-        function runApp() {
-            var user = readCookie("username");
-            if(!user){
-                user=prompt("Enter your name: ", "");
-                if(user!= "" && user!=null){
-                    createCookie("username", user, 30);
-                }
-                
-            }else{
-                
-
-                alert("Hello "+user);
-            }
-        }
-  
-    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Changelog</title>
+  <!-- Include the 'marked' library for converting Markdown to HTML -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
-<body onload="runApp()"></body>
+<body>
+  <div id="changelog"></div>
+
+  <script>
+    // Function to fetch the 'changelog.md' file and render it on the website
+    function fetchChangelog() {
+      const changelogUrl = 'https://raw.githubusercontent.com/utkarshn03/utkarshn03.github.io/main/changelog.md';
+
+      fetch(changelogUrl)
+        .then(response => response.text())
+        .then(text => {
+          const changelogElement = document.getElementById('changelog');
+          changelogElement.innerHTML = marked(text); // Convert Markdown to HTML using the 'marked' library
+        })
+        .catch(error => {
+          console.error('Error fetching changelog:', error);
+        });
+    }
+
+    // Call the fetchChangelog function when the page loads
+    document.addEventListener('DOMContentLoaded', fetchChangelog);
+  </script>
+</body>
 </html>
